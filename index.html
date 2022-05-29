@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- space to toggle fullview, double click for another and pause carrousel, P to pause or continue carousel -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva pestaña</title>
+    <style>
+    html, body {
+        background-color: black;
+        margin: 0;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #filter {
+        background-color: black;
+        opacity: .25;
+        margin: 0;
+        padding: 0px;
+        height: 100%;
+    }
+    #info {
+        background-color: black;
+        opacity: .25;
+        color: white;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    </style>
+</head>
+<body>
+    <div id="filter"></div>
+    <div title="space to toggle fullview, double click for another image and pause carrousel, P to pause or continue carousel (30s)" id="info">hi, hover me</div>
+    <script>
+        const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+        var imgsNumber = 248;
+        var imgSuffix = "img_";
+        var imgId = random(0,imgsNumber);
+        document.body.style.backgroundImage = " url('media/"+imgSuffix+imgId+".jpg')";
+        var persBackg = false;
+        var fullView = false;
+        document.onkeypress = function (e) {
+            e = e || window.event;
+            console.log(e.keyCode)
+            if (e.keyCode == 32) {
+                if (!fullView) {
+                fullView = true
+                document.body.style.backgroundSize = "auto 100%";
+                }
+                else {
+                fullView = false
+                document.body.style.backgroundSize = "cover";
+                }
+            }
+            else if (e.keyCode = 112 || e.keyCode == 80) {
+                if (persBackg) {
+                    persBackg = false;
+                }
+                else {
+                    persBackg = true
+                }
+            }
+        };
+        document.body.addEventListener('dblclick', function(){ 
+            var imgId = random(0,imgsNumber);
+            document.body.style.backgroundImage = " url('media/"+imgSuffix+imgId+".jpg')"; 
+            persBackg = true
+        });
+
+        setInterval(function () {
+            if (!persBackg) {
+                var imgId = random(0,imgsNumber);
+                document.body.style.backgroundImage = " url('media/"+imgSuffix+imgId+".jpg')";
+                if (fullView) {
+                    document.body.style.backgroundImage = "auto 100%";
+                }
+            }
+        }, 30000);
+    </script>
+</body>
+</html>

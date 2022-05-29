@@ -1,5 +1,5 @@
 import os
-os.chdir('/home/imu/Documents/code/firefox_newtab/media/')
+os.chdir('./media/')
 it = 0
 for f in os.listdir():
     filename,filext = os.path.splitext(f)

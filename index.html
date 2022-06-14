@@ -60,7 +60,7 @@
                 if (persBackg) {
                     persBackg = false;
                 }
-                else {
+                else if (!persBackg) {
                     persBackg = true
                 }
             }
@@ -72,13 +72,16 @@
         });
 
         setInterval(function () {
-            if (!persBackg) {
-                var imgId = random(0,imgsNumber);
-                document.body.style.backgroundImage = " url('media/"+imgSuffix+imgId+".jpg')";
-                if (fullView) {
-                    document.body.style.backgroundImage = "auto 100%";
-                }
-            }
+		if (!persBackg) {
+                	var imgId = random(0,imgsNumber);
+                	document.body.style.backgroundImage = " url('media/"+imgSuffix+imgId+".jpg')";
+                	if (fullView) {
+                    		document.body.style.backgroundImage = "auto 100%";
+                	}
+		}
+		else { 
+			console.log("paused");
+		}
         }, 30000);
     </script>
 </body>
